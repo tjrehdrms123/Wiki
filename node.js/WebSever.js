@@ -1,4 +1,5 @@
-// 웹서버 생
+// 웹서버 생성
+
 const http = require('http');
 
 http.createServer((request, response) => {
