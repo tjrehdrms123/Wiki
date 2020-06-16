@@ -1,62 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<title>명부 관리 프로그램</title>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-</head>
-<body>
-	<style>
-		.list {
-			white-space: nowrap;
-			border-collapse: collapse;
-		}
-
-		.list>caption {
-			padding: 5px 0;
-		}
-
-		.list>thead {
-			background: #666;
-			color: #FFF;
-		}
-
-		.list>thead th,
-		.list>thead td {
-			border: 1px solid #FFF;
-			border-style: none solid;
-		}
-
-		.list>tbody th,
-		.list>tbody td {
-			border: 1px solid #CCC;
-			border-style: solid none;
-		}
-	</style>
-	<table class="list">
-		<caption>
-			<input type="text" id="username" title="이름을 입력하세요" />
-			<button type="button" id="btn-apply">등록</button>
-		</caption>
-		<thead>
-			<tr>
-				<th>선택</th>
-				<th>이름</th>
-				<th>메뉴</th>
-			</tr>
-		</thead>
-		<tbody></tbody>
-		<tfoot>
-			<tr>
-				<td colspan="3">
-					<button type="button">선택된 항목 제거</button>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-</body>
-<script>
 $(function(){
 	$('#btn-apply').on('click',doApply);
   $('#username').focus().on('keydown',doApply);
@@ -104,5 +45,3 @@ function doDel2(e){
     
   }
 }	
-</script>
-</html>
