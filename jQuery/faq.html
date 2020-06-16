@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>FAQ</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<style>
+	#faq>dt {
+		border-bottom: 1px solid #666;
+	}
+
+	#faq>dd {
+		display: none;
+	}
+
+	.faq-dt-span1 {
+		display: inline-block;
+		transform: rotate(180deg);
+		transition: transform 500ms;
+	}
+
+	.faq-dt-span2 {
+		display: inline-block;
+		transform: rotate(0deg);
+		transition: transform 500ms;
+	}
+</style>
+
+<body>
+	<h1>FAQ</h1>
+	<dl id="faq">
+		<dt>
+			<h3><span>▼</span>학기중에 생활관에 들어가고 싶은데 어떻게 하나요?</h3>
+		</dt>
+		<dd>
+			<p>학기중에도 인터넷 접수하시면 됩니다.</p>
+			<p>인터넷 접수는 언제든지 가능합니다.</p>
+			<p>공석이 있을경우 개별적으로 연락해 드립니다.</p>
+		</dd>
+
+		<dt>
+			<h3><span>▼</span>학기중에 퇴관시 기숙사 환불은 어떻게 받나요?</h3>
+		</dt>
+		<dd>
+			<p>퇴관비는 지급 규정에 의해 주마다 계산되며 입관비와 자치비는 환불되지 않습니다.
+				<br /> 2학기 중간고사 이후 퇴관자는 열쇠보관료 외 일체 환불이 불가능을 원칙으로 합니다.</p>
+		</dd>
+
+		<dt>
+			<h3><span>▼</span>구급약은 구비되어 있나요?</h3>
+		</dt>
+		<dd>
+			<p>구급약은 소화제, 감기약, 두통약, 밴드, 소독약이 있습니다. 각동 사생단실과 사무실에 보관되어 있습니다.
+				<br /> 또한 학교의 제1공학관 1층 보건실이 있습니다.</p>
+		</dd>
+	</dl>
+</body>
+<script>
+$(function() {
+    $("#faq > dt").click(showHide);
+});
+function showHide(event) {
+    var $subject = $(event.currentTarget);
+    $subject.prevAll("dd:visible").slideUp("fast", function() {
+        var $bullet = $(this).prev().children().children("span");
+        $bullet.removeClass("faq-dt-span1");
+        $bullet.addClass("faq-dt-span2");
+    });
+    $subject.next().nextAll("dd:visible").slideUp("fast", function() {
+        var $bullet = $(this).prev().children().children("span");
+        $bullet.removeClass("faq-dt-span1");
+        $bullet.addClass("faq-dt-span2");
+    });
+    $subject.next().slideToggle("fast", function() {
+        var $bullet = $(this).prev().children().children("span");
+        if ($(this).is(":visible")) {
+            $bullet.addClass("faq-dt-span1");
+            $bullet.removeClass("faq-dt-span2");
+        } else {
+            $bullet.addClass("faq-dt-span2");
+            $bullet.removeClass("faq-dt-span1");
+        }
+    });
+}
+</script>
+</html>
