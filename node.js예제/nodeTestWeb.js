@@ -1,16 +1,20 @@
+// 모듈 , 변수 생성 //
 var http = require('http');
 var url = require('url');
 var queryString = require('querystring');
 var server = http.createServer();
 var port = 3000;
 
-// 서버 생성
+// 기능 분리 //
+var webStart = function(){ // 웹서버 시작
+	return console.log('웹서버 시작'); 
+};
 
-server.listen(port,function(){
-   console.log('웹 서버 동작중'); 
-});
+var webStop = function(){ // 웹서버 종료
+	return console.log('웹서버 중지'); 
+};
 
-server.on('request',function(req,res){
+var createWeb = function(req,res){ // 웹서버 생성
     var requestURL = url.parse(req.url).query;
     var param = queryString.parse(requestURL , '&'); //&로 구분하여 객체로 만듬
     res.setHeader('Content-Type','text/html;charset=utf-8');
@@ -32,8 +36,11 @@ server.on('request',function(req,res){
                
     }
     res.write(html);
-});
+}
 
-server.on('close',function(){
-    console.log('웹 서버 동작 중지');
-})
+// 실행문 //
+server.listen(port,webStart);
+
+server.on('request',createWeb);
+
+server.on('close',webStop);
