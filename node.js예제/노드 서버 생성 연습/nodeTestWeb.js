@@ -1,30 +1,30 @@
 // 모듈 , 변수 생성 //
-var http = require('http');
-var url = require('url');
-var queryString = require('querystring');
-var server = http.createServer();
-var port = 3000;
+const http = require('http');
+const url = require('url');
+const queryString = require('querystring');
+const server = http.createServer();
+const port = 3000;
 
 // 기능 분리 //
-var webStart = function(){ // 웹서버 시작
+let webStart = function(){ // 웹서버 시작
 	return console.log('웹서버 시작'); 
 };
 
-var webStop = function(){ // 웹서버 종료
+let webStop = function(){ // 웹서버 종료
 	return console.log('웹서버 중지'); 
 };
 
 // 웹서버 생성 //
-var createWeb = function(req,res){
+let createWeb = function(req,res){
 	requestURL = url.parse(req.url).query; // var 제거 전역 변수로 선언 > 아래 HTML 분리 부분에서 requestURL사용
     res.setHeader('Content-Type','text/html;charset=utf-8');
     res.write(webHtml() );
 }
 
 // HTML 분리 //
-var webHtml  = function(){	
-	var param = queryString.parse(requestURL , '&'); //&로 구분하여 객체로 만듬
-	var html = ``;
+let webHtml  = function(){	
+	let param = queryString.parse(requestURL , '&'); //&로 구분하여 객체로 만듬
+	let html = ``;
 	 if(requestURL != null){
         html = `<div>UserName :  ${param.username}</div>
                 <br>
