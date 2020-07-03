@@ -1,6 +1,6 @@
 // 웹서버 생성
 
-const http = require('http');
+/*const http = require('http');
 
 http.createServer((request, response) => {
   return request
@@ -19,4 +19,22 @@ http.createServer((request, response) => {
       response.write('tjrehdrms\n'); // body에 정보 탑재
       response.end('Web Server'); // 정보 탑재 후 브라우저로 전송
     });
-}).listen(8080);
+}).listen(8080);*/
+
+var http = require('http');
+var port = 3000;
+
+var server = http.createServer();
+
+server.listen(port,function(){
+	console.log('대기중');
+});
+
+server.on('request',function(req,res){
+	var html = `<h1>Hello</h1>
+	<h2>Yes Hi!</h2>
+	<script>
+		alert('Hello World');
+	</script>`;
+	res.end(html);
+});
