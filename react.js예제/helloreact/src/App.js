@@ -20,6 +20,23 @@ import Footer from './component/footer';
     )
   }
 } */
+ class Name extends Component{
+   
+   render(){
+     return(
+      <from>
+        <label>
+          Korea Name : <input type="text" name="name" />
+        </label>
+        <button>Click Me !</button>
+        <br />
+        <br />        
+          English Name : <input type="text" name="name" />
+        <button>Click Me !</button>
+      </from>
+     )
+   }
+ }
 
  class Nav extends Component{
   render(){
@@ -46,6 +63,31 @@ import Footer from './component/footer';
   }
 } */
 
+function computerClass( name , classNumber , today){
+  this.name = name;
+  this.classNumber = classNumber;
+  this.today = today;
+  this.showMy = function(){
+    console.log(`안녕하세요 저의 이름은 ${name} 입니다. 저가 듣고 있는 수업은 ${classNumber}입니다. ${today}부터 수강할 계획입니다.`);
+  }
+}
+let myName = new computerClass('석동근','리액트','월요일');
+myName.showMy();
+
+class limeClass{
+  constructor(number , nickName){
+    this.number = number;
+    this.nickName = nickName;
+  }
+  lime(){
+    console.log(`출석번호 : ${this.number}번 / 이름 : ${this.nickName}입니다.`);
+  }
+}
+
+let showLime = new limeClass(1,'석동근');
+showLime.lime();
+
+
 class App extends Component {
   constructor(props){ 
     super(props);   // props를 초기화해주는 부분
@@ -57,16 +99,26 @@ class App extends Component {
         {id : 3 , title : '리액트 컴포넌트 연습 하기' , desc : 'react sad!'},
       ]
     }
-  }  
+  }   
+
   render(){
+    const limeFriends = 'Lime Friends';
+    const style = {
+      backgroundColor: 'black',
+      color: 'aqua',
+      fontSize: 24, // 기본 단위 px
+      padding: '1rem' // 다른 단위 사용 시 문자열로 설정
+    }
     return (
       <div className="App">
+        <div style={style}>{limeFriends}</div>
         <Subject 
           title={this.state.subject.title} 
           subTitle={this.state.subject.subTitle}></Subject>
         <Subject title="Node" subTitle="Npm start !"></Subject>
-        <Nav></Nav> 
-        <Footer date={this.state.contents}></Footer>
+        <Nav></Nav>         
+        <Name></Name>
+        <Footer date={this.state.contents}></Footer>       
       </div>
     )
   }
