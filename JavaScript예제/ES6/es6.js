@@ -164,7 +164,7 @@ console.log(restName);
 /* 
     제목 : class
     사용 방법 : class 클래스명 {
-        초기화 부분 : 변수( constructor )
+        초기화 부분 : 생성자 함수( constructor )
         메서드 부분 : 동작
     }
     
