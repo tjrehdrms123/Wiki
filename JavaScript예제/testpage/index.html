@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Student-List</title>
+</head>
+<body>
+	<h2>학생기록부</h2>
+	<div class="student-list">	
+		<h4>- 학생 목록 -</h4>	
+	</div>	
+	<h4>학생의 한줄 자기소개서</h4>
+</body>
+
+<style>
+h5{padding:5px;}
+</style>
+
+<script>
+	// class를 이용해서 component 생성
+	class myPropile{
+		constructor(name , teacher , className){		    
+			this.name = name;
+			this.teacher = teacher.toUpperCase().concat('교수님');
+			this.className = className;			
+		}
+		hi = () => {
+			let list = [];
+			list.push(`<ul> <li>애들아 안녕 나의 이름은 ${this.name}이야.</li> <br> <li>나는 ${this.teacher}의 ${this.className}수업을 듣고있어.</li> <br> <br></ul>`);
+			//console.log(list);
+			document.write(list);
+		};
+		student = () => {
+			let list = [];			
+			let name = this.name;
+			let fitstName = name.substr(0,3);
+			let myName = name.substr(4,10);
+			list.push = name;
+
+			let elH5 = document.createElement('h5');
+			
+			elH5.textContent = '성 : '+ fitstName + '입니다 ' + '이름 : ' + myName + '입니다';
+
+			let stuList = document.querySelector('.student-list');
+			//console.log(elH5);
+			stuList.appendChild(elH5);
+		};
+	}
+
+	let class1 = new myPropile('suk-dong-geun','sul-min-suk','한국의 역사');
+	let class2 = new myPropile('kim-min-su','ja-ojb-arr','자바스크립트 객체 배열 활용하기');
+	let class3 = new myPropile('lee-ji-he','back-jong-one','중식의 불조절');
+
+	class1.hi();
+	class2.hi();
+	class3.hi();
+
+	class1.student();
+	class2.student();
+	class3.student();
+</script>
+
+</html>

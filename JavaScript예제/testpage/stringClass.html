@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>stringClass</title>
+</head>
+<body>
+	<h5>스트링 클래스 구현</h5>
+	<p>
+		* 명세서
+		- 클래스명 : MyString
+		- 필드 : text : string
+		- 메소드 : append(text:string) : void 
+		- valueOf(value:string) : string
+		- replace(text:string) : string
+		
+		* 기능 
+		- append 기존 text필드에 받은 인자를 추가
+		- valueOf 주어진 값을 텍스트로 변경
+		- 대신 필드에 length 두고 append할때마다 길이 늘어나는걸로 그리고 생성자로 text필드에 값 대입가능
+		
+
+		- (replace text필드에 있는것을 변경)
+		
+		* 불가
+		- 기존 api 사용하지말것 (내장함수,변수)
+		- 템플릿스트링도 사용불가
+
+		// 추가
+		MyString
+		text : string   텍스트
+		length : number 길이		
+		append(value : any) : void 
+		실행 시 주어진 텍스트를 텍스트 필드에 저장, 그리고 길이 증가
+		static valueOf(value : any) : string 
+		실행 시 주어진 값을 텍스트로 변경		
+	</p>
+</body>
+
+<script>
+class MyString {
+	constructor(textFild){
+		this.textFild = textFild;
+	}
+	append(value)
+	{
+			let apdEl = this.textFild + value;
+			appendTo : console.log(apdEl);
+	}
+	length(value)
+	{	
+		// var length = [];  length[0] > 있으면 +1 null이면 return
+	}
+}
+
+
+</script>
+
+</html>
