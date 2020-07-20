@@ -24,7 +24,7 @@ const App = () => {
             <Link to="/department_get?deptno=102&msg=world">[멀티미디어학과]</Link>
             {/* PATH 파라미터를 포함하는 링크 구성 */}
             <Link to="/department_path/201/hello">[전자공학과]</Link>
-            <Link to="/department_path/202/world">[기계공학과]</Link>
+            <Link to="/department_path/202/world">[기계공학과]</Link>    
             <hr />
 
             {/* ------- 페이지로 사용될 컴포넌트들 명시하기 ------- */}

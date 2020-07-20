@@ -12,7 +12,8 @@ const DepartmentPath = (props) => {
     // path 파라미터는 props의 match.params객체로 내장되어있다.
     const urlParams = props.match.params;
     console.debug(urlParams);
-
+    console.debug('---------');
+    console.debug(urlParams);
     // 필요한 변수값과 타입 확인
     console.debug('요청된 학과번호 값=%s (%s)', urlParams.deptno, typeof urlParams.deptno);
     console.debug('요청된 메시지 내용=%s (%s)', urlParams.msg, typeof urlParams.msg);

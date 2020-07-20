@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 //const MyPropTypesSub = (props) => {
     // 비구조 문법을 통해 변수 속성값을 변수로 선언
     //const {name, age, hobby} = props;
+    
 const MyPropTypesSub = ({name, age, hobby}) => {
     return (
         <div>
