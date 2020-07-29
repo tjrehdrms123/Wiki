@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ajax-Demo</h1>
+    <!-- <form id="myform" method="post" action="http://itpaper.co.kr/demo/react/api/dept_write.php"> -->
+    <form id="myform">
+        <div>
+            <label for="dname"></label>
+            <input type="text" id="dname" name="dname" />
+        </div>
+        <div>
+            <label for="loc"></label>
+            <input type="text" id="loc" name="loc" />
+        </div>
+        <button type="submit">저장하기</button>
+    </form>
+
+    <hr />
+
+    <ul id="list"></ul>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        const getList = () => {
+            $.ajax({
+                url: 'http://itpaper.co.kr/demo/react/api/dept_list.php',
+                method: 'get',
+                data: {},
+                success: json => {
+                    console.log(json);
+                    $("#list").empty();
+
+                    json.item.forEach((v, i) => {
+                        const li = $("<li>").html("학과이름: " + v.dname + " / 학과번호: " + v.deptno + " / 위치: " + v.loc);
+                        $("#list").append(li);
+                    });
+                }
+            });
+        };
+
+        $(() => {
+            getList();
+
+            $("#myform").submit(e => {
+                e.preventDefault();
+
+                $.ajax({
+                    url: 'http://itpaper.co.kr/demo/react/api/dept_write.php',
+                    method: 'post',
+                    data: {
+                        dname: $("#dname").val(),
+                        loc: $("#loc").val()
+                    },
+                    success: json => {
+                        console.log(json);
+                        getList();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
