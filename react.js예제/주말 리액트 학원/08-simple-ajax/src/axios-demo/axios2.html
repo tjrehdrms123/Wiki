@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="keyword" />
+    <button type="button" onclick="doConnect()">학과검색</button>
+
+    <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function doConnect() {
+            console.group('Ajax');
+            console.log('로딩중...');
+
+            // Ajax 연동 기능을 별도의 함수로 묶는다. function 키워드 앞에 "async" 키워드 주의
+            (async function() {
+                try {
+                    // Ajax 연동을 구현할 부분
+                    // -> Ajax 호출시 "await" 키워드 주의!!!
+                    // -> promise에서 then 함수를 통해 콜백으로 처리하던 연동 결과를 동기식 처리와 같이 리턴받을 수 있다.
+                    const response = await axios.get('http://itpaper.co.kr/demo/react/api/dept_list.php', {
+                        params: {
+                            keyword: document.getElementById("keyword").value,
+                            page: 1,
+                        }
+                    });
+
+                    // 정상 데이터 처리
+                    console.debug('Ajax 연동 성공');
+                    console.debug(response.data);
+                    console.debug('로딩완료...');
+                    console.groupEnd();
+                } catch (e) {
+                    // try 블록을 수행하는 도중 에러가 발생하면 try의 수행을 중단하고
+                    // 이 곳으로 프로그램 제어가 이동한다.
+                    // 에러 발생시
+                    console.error('Ajax 연동 실패');
+                    console.error(e.response.status);
+                    console.error(e.response.data);
+                }
+            })();
+
+            console.log('프로그램 종료~!!!');
+        }
+    </script>
+</body>
+</html>

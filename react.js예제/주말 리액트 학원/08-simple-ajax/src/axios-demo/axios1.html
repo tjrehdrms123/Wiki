@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" id="keyword" />
+        <button type="button" onclick="doConnect()">학과검색</button>
+
+        <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            function doConnect() {
+                console.group('Ajax');
+                console.log('로딩중...');
+
+                axios.get('http://itpaper.co.kr/demo/react/api/dept_list.php', {
+                    // GET 파라미터 -> URL에서 "?이름=값&이름=값" 형식으로 전달되는 변수들을 JSON으로 구성
+                    params: {
+                        keyword: document.getElementById("keyword").value,
+                        page: 1,
+                    },
+                    // HTTP헤더(여기서는 사용 안함) -> ex: Kakao Open API의 인증키
+                    headers: {},
+                })
+                .then(function (response) {
+                    // 성공시 --> 백엔드로부터 전달되는 JSON은 data로 접근
+                    console.debug('Ajax 연동 성공');
+                    console.debug(response.data);
+                })
+                .catch(function (error) {
+                    // 에러 발생시
+                    console.error('Ajax 연동 실패');
+                    console.error(error.response.status);
+                    console.error(error.response.data);
+                })
+                .finally(function () {
+                    // 성공,실패 여부에 상관 없이 마지막에 실행되는 함수
+                    console.debug('로딩완료...');
+                    console.groupEnd();
+                });
+
+                console.log('프로그램 종료~!!!');
+            }
+        </script>
+    </body>
+</html>
