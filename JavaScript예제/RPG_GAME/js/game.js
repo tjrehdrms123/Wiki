@@ -1,3 +1,10 @@
+/*
+    > Character라는 기본틀인 생성자를 생성하고 Hero,Monster에서는 Character를 상속받는형식
+    > Vehicle.apply(this, arguments);는 Vehicle의 this들을 그대로 받으란 뜻 
+    > Sedan.prototype = Object.create(Vehicle.prototype);는 Sedan의 prototype과 Vehicle의 prototype을 연결하는 것
+    > Object.create는 객체를 만들되 생성자는 실행하지 않는 겁
+*/
+
 window.addEventListener('load',function(){
 
 function logMessage(msg,color){
@@ -8,33 +15,40 @@ function logMessage(msg,color){
     div.innerHTML = msg;
     div.style.color = color;
     document.getElementById('log').appendChild(div);
-}
+}// 로그메세지를 HTML에 뿌려주는 함수 
+    
 var gameover = false;
 var battle = false;  
+// 전역 변수 게임종료 , 전투중을 판별해주는 변수이다    
     
 function Character(name , hp , att){
     this.name = name;
     this.hp = hp;
     this.att = att;
-}   
+}// 기본 생성자   
 Character.prototype.attacked = function(damage){
     this.hp -= damage;
     logMessage(this.name + '의 체력이' + this.hp + '가 되었습니다');
     if(this.hp <= 0){
         battle = false;
     }
-} 
+}// Character에 attacked메소드를 추가
+
 Character.prototype.attack = function (target) {
     logMessage(this.name + '이 ' + target.name + '을 공격합니다');
     console.log('Character.prototype.attack > this.att : '+this.att);
     target.attacked(this.att); 
-};       
+};
+// Character에 attack메소드를 추가  
+// 주의할점은 attack에서 target.attacked()함수를 호출하고있다
 
 function Hero(name , hp , lev , xp){
     Character.apply(this, arguments);
     this.lev = lev || 1;
     this.xp = xp || 0;
 }
+// Here가 Character을 상속하고있다 , lev , xp가 추가되었다
+    
 Hero.prototype = Object.create(Character.prototype);
 Hero.prototype.constructor = Hero;
 Hero.prototype.attacked = function(dameage){
@@ -45,15 +59,14 @@ Hero.prototype.attacked = function(dameage){
         battle = false;
         gameover = true;
     }
-};
+};// 메소드 확장
 Hero.prototype.attack = function(target){
     logMessage(this.name + '님이' + target.name + '을 공격합니다');
     console.log('Hero.prototype.attack > this.att: '+this.att);
     if(target.hp <= 0){
         this.gainXp(target);
     }
-};
-
+};// 메소드 확장
 Hero.prototype.gainXp = function(target) {
   logMessage('전투에서 승리하여 ' + target.xp + '의 경험치를 얻습니다', 'blue');
   this.xp += target.xp;
@@ -63,7 +76,7 @@ Hero.prototype.gainXp = function(target) {
     this.hp = 100 + this.lev * 10;
     this.xp -= 10 * this.lev + 100;
   }
-};   
+};// gainXp메소드 추가   
       
 function Monster(name , hp , att , lev ,xp ){
     Character.apply(this, arguments);
